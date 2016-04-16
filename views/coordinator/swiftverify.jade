@@ -1,0 +1,34 @@
+extends ../layout
+
+block content
+ div(class='row')
+  div(class='col-lg-3')
+  div(class='col-lg-6')
+   p(align='center')
+    input(id='search' type='search' class='form-control' placeholder='Search by SWIFT code' style='height:20px;')
+    button(id='swiftsearch' class='glyphicon glyphicon-search' class='form-control' style='width:inherit;')
+ div(class='row listswift')
+    - each user in users
+      - if(user)
+         -if(user.verified === false){
+           div(class='codeitem' style='border:solid #d50000 2px; color:#d50000; margin:20px; border-radius:7px;')
+            p(align='center' class='swift-user' style='font-weight:bold;')
+              span= user.firstname + ' ' + user.middlename + '('+ user.email +')'
+            p(align='center' class='swift-user' style='font-weight:bold;')= user.swiftcode + ' (Unverified)'
+            p(align='center')
+              input(type='checkbox' id='verified' value='true')
+              label(for='verified') Verified
+            #myModal.modal.fade(role='dialog')
+              .modal-dialog
+                .modal-content
+                  .modal-body
+                    p(align='center' style='margin:20px;font-weight:bold;') Send Email to the user about the SWIFT verification.
+                  .modal-footer
+                    button.btn.btn-success(type='button' id='yesButton' name='#{user.email}') Yes
+                    button.btn.btn-default(type='button', data-dismiss='modal') No
+         -}else{
+           div(class='codeitem' style='border:solid #37a000 2px; color:#37a000; margin:20px; border-radius:7px;')
+            p(align='center' class='swift-user' style='font-weight:bold;')
+              span= user.firstname + ' ' + user.middlename + '('+ user.email +')'
+            p(align='center' class='swift-user' style='font-weight:bold;')= user.swiftcode + ' (verified)'
+         -}

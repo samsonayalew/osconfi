@@ -1,0 +1,43 @@
+extends ../layout
+
+block content
+ div(class='row')
+  div(class='col-lg-1')
+
+  div(class='col-lg-8')
+   form(role="form" data-toggle="validator" action='upload' method='post' enctype="multipart/form-data")
+    div(class="form-group has-feedback")
+     select(name='track' id='submitTrack' class="form-control selector" required)
+      option(value='' disabled selected) select track
+      - each track in tracks
+         option(value=track.name)= track.name
+     span(class="glyphicon form-control-feedback" aria-hidden="true")
+     div(class="help-block with-errors")
+    div(class="form-group has-feedback")
+     select(name='submissiontype' id='submissionType' class='form-control selector' required)
+      option(value='' disabled selected) select paper type
+      option(value='First Draft') First Draft
+      option(value='Camera Ready') Camera Ready
+     span(class="glyphicon form-control-feedback" aria-hidden="true")
+     div(class="help-block with-errors")
+    div(class="form-group has-feedback")
+      input(type='text' name='title' id='submitTitle' placeholder='Title' class='form-control' required)
+      span(class="glyphicon form-control-feedback" aria-hidden="true")
+      div(class="help-block with-errors")
+    div(class="form-group has-feedback")
+     textarea(name='abstract' id='submitAbstract' placeholder='Abstract(less than 1000 words)' pattern="(\w+\W+){0,10}\w+\W*" class='form-control' rows='6' required)
+     span(class="glyphicon form-control-feedback" aria-hidden="true")
+     div(class="help-block with-errors")
+    div(class="form-group has-feedback")
+     input(type='text' name='keyword' id='submitKeyword' placeholder='keywords' class='form-control' required)
+     span(class="glyphicon form-control-feedback" aria-hidden="true")
+     div(class="help-block with-errors")
+    div(class="form-group form-group-file")
+     input(type='file' name='file' id='submitFile' data-filesize="20971520" data-filesize-error="Max file size 20MB" accept="application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document" required)
+     div(class="help-block with-errors")
+    button(name='Upload' type='submit' class='btn btn-primary') Upload
+   div(class='row')
+    - if(document) 
+      - each document in files
+         li(class="uploadeddoc")
+          a(href="download/#{document.originalname}"  target="_blank")= document.originalname

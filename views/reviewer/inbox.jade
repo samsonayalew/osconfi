@@ -1,0 +1,44 @@
+extends ../layout
+
+block content
+ div(class="row" style="margin-top:20px;")
+  div(class="col-lg-12" role="main")
+   if emails
+      table.table.table-hover
+          thead
+            tr
+             th Subject
+             th From
+             th Date
+          tbody
+          - each email, index in emails
+            if email.read === false
+              tr.read.btn-primary(href="#demo#{index}" data-toggle="modal" style='cursor: pointer;margin: 10px;' data-target="#demo#{index}")
+                td= email.subject
+                div.modal.fade(id="demo#{index}" role='dialog')
+                  .modal-dialog
+                    // Modal content
+                    .modal-content
+                      .modal-header
+                        button.close(type='button', data-dismiss='modal') ×
+                        h4.modal-title= email.subject + '(' + new Date(email.date).toDateString() + ')'
+                      .modal-body
+                        p= email.text
+                td= email.to
+                td= new Date(email.date).toDateString()
+            else
+              tr(href="#demo#{index}" data-toggle="modal" style='cursor: pointer;margin: 10px;' data-target="#demo#{index}")
+                td= email.subject
+                div.modal.fade(id="demo#{index}" role='dialog')
+                  .modal-dialog
+                    // Modal content
+                    .modal-content
+                      .modal-header
+                        button.close(type='button', data-dismiss='modal') ×
+                        h4.modal-title= email.subject + '(' + new Date(email.date).toDateString() + ')'
+                      .modal-body
+                        p= email.text
+                td= email.to
+                td= new Date(email.date).toDateString()
+   else
+      h1 Inbox

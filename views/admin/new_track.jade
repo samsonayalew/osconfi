@@ -1,0 +1,14 @@
+extends ../layout
+
+block content
+   div(class="row" style="margin-left:150px;")
+    form(method='post' action='addtrack' entype='multipart/form-data' data-toggle='validator' role='form')
+     div(class='form-group has-feedback')
+      input(type='text' name='name' placeholder='Track name' data-error='this field is required' class='form-control' required)
+      span(class="glyphicon form-control-feedback" aria-hidden="true")
+      div(class="help-block with-errors")
+     div(class='form-group has-feedback')
+      textarea(placeholder='Description' name='description' rows='7' data-error='this field is required' class='form-control' required)
+      span(class="glyphicon form-control-feedback" aria-hidden="true")
+      div(class="help-block with-errors")
+     button(name='Add' type='submit' class='btn btn-primary') Upload

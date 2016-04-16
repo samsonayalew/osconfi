@@ -1,0 +1,19 @@
+extends ../layout
+
+block content
+ div(class='row')
+  div(class='col-lg-2')
+  div(class='col-lg-10')
+   - each track, index in tracks
+      form(id='trackchange' action='assigntrack' method='post')
+       div(class='col-lg-8')
+        div(class='input-group' style='margin-top:20px;')
+         input(type='text' class='form-control' value=track.name aria-lebel='...' disabled)
+         div(class="input-group-btn")
+          select(class="form-control dropdown-menu dropdown-menu-right trackselector" id="#{track.name}" style="margin:0;")
+           option(value='' disabled selected) select coordinator
+           - each coordinator in coordinators
+              - if(track.coordinator === coordinator._id)
+                  option(value='' disabled selected)= coordinator._id
+              - else
+                  option(value='#{coordinator._id}')= coordinator._id

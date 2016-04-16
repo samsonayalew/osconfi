@@ -1,0 +1,177 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='shortcut icon' type='image/x-icon' href='images/favicon.ico')
+    link(href='https://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css')
+    link(href='stylesheets/bootstrap.min.css' rel='stylesheet' type='text/css')
+    link(href='stylesheets/font-awesome.min.css' rel='stylesheet' type='text/css')
+    link(href='stylesheets/style.min.css' rel='stylesheet' type='text/css')
+  body
+   div(style="padding-right:0px;padding-left:0px;margin-bottom:20px;")
+    div(class='carousel-caption bgtop')
+     img(src='images/conference.png' alt="st mary\'s logo" style='position: static;height: 140px;')
+     //p(style="color: aliceblue;font-size: 20px;/*text-shadow:3px 3px 6px rgb(210, 155, 155);*/margin: 0px 0 5px;") SMU CONFERENCE
+     //p(style="color: aliceblue;font-size: 20px;margin: 0px 0 5px;") 11th conference on Private Higher Education
+     //p(style='color:#FFDB00;') 5 - 7 Aug 2015
+    div(class='navbar-collapse collapse' style='width:100%;background:#FFFFFF;')
+     div(style='display: table;margin: 0 auto; font-size:16px;')
+         ul(class='nav navbar-nav' style='')
+          li
+           a(href='/') Home
+          li
+           a(href='theme') Themes
+          li
+            a(href='submission_information') Submission
+          li
+           a(href='schedule') Schedule
+          //li
+           a(href='sponsors') Sponsors
+          //li
+             a(href='general_information') General Information
+          li
+             a(href='travel_information') Travel & Hotel Information
+          li
+            a(href='contactus') Contact Us
+          - if(role === 'writer'){
+          li
+           a(href='/swift') Swift
+          li
+           a(href='/submit') Submit paper
+          li
+           a(href='/inbox') Inbox
+          - } else if(role === 'Participant'){
+                li
+                 a(href='/swift') Swift
+          - } else if(role === 'reviewer'){
+          li
+           a(href='#') assigned papers
+          li(class='dropdown')
+           a(href='#' role='button' class='dropdown-toggle' data-toggle='dropdown' data-target='#') email
+            span(class='caret')
+           ul(class='dropdown-menu' id='email-menu')
+            li
+             a(href='/email') Compose
+            li
+             a(href='/inbox') Inbox
+            li
+             a(href='/sent') Sent
+          - }else if(role === 'coordinator'){
+            li
+             a(href='/swiftverify') Swift Verify
+            li
+             a(href='/downloadpaper') download papers
+            li(class='dropdown')
+             a(href='#' role='button' class='dropdown-toggle' data-toggle='dropdown' data-target='#') email
+              span(class='caret')
+             ul(class='dropdown-menu' id='email-menu')
+              li
+               a(href='/email') Compose
+              li
+               a(href='/inbox') Inbox
+              li
+               a(href='/sent') Sent
+          - } else if(role === 'admin'){
+          li(class='dropdown')
+           a(href='#' role='button' class='dorpdown-toogle' data-toggle='dropdown' data-target='#') Administor
+            span(class='caret')
+           ul(class='dropdown-menu' id='admin-menu')
+            li
+             a(href='/assigntrack') Assign track
+            li
+             a(href='/new_news') Add news
+            li
+             a(href='/new_track') New track
+            li
+             a(href='/userroles') User roles
+          - }
+          - if(authStatus === 'loggedIn'){
+            li
+             a(href='/logout') Logout
+          - } else {
+            li
+             a(href='/login') Login
+            li
+             a(href='/register') Register
+          - }
+    div(class='container row-fluid' style="background:aliceblue;")
+     div(class='col-sm-3' style='margin-top:20px;margin-left: -40px;')
+      div(id='corganizers' class='carousel slide' data-role='carousel' style='padding:0px;margin-left:53px;')
+        div(class='carousel-inner' style="background:white;")
+         div(class='item active')
+          a(href='http://www.aau.org' target='_blank')
+           img(src='images/aau_logo.png' class="sponsorimg" alt='First slide')
+         div(class='item')
+          a(href='http://www.au.int' target='_blank')
+           img(src='images/au.png' class="sponsorimg" alt='second slide')
+         div(class='item')
+          a(href='http://www.unesco.org/africa/portal/edeng_4.html' target='_blank')
+           img(src='images/unesco.png' class="sponsorimg" alt='third slide')
+        a(class='left carousel-control' href='#corganizers' role='button' data-slide='prev')
+         span(class='glyphicon glyphicon-chevron-left' style="border-radius: 6px;")
+        a(class='right carousel-control' href='#corganizers' role='button' data-slide='next')
+         span(class='glyphicon glyphicon-chevron-right' style="border-radius: 6px;")
+      div(id='sponsors' class='carousel slide' data-role='carousel' style='padding:0px;margin-top:20px;margin-left:53px;')
+        div(class='carousel-inner' style="background:white;")
+         div(class='item')
+          a(href='http://www.aau.org' target='_blank')
+           img(src='images/aau_logo.png' class="sponsorimg" alt='First slide')
+         div(class='item active')
+          a(href='http://www.au.int' target='_blank')
+           img(src='images/au.png' class="sponsorimg" alt='second slide')
+         div(class='item')
+          a(href='http://www.unesco.org/africa/portal/edeng_4.html' target='_blank')
+           img(src='images/unesco.png' class="sponsorimg" alt='third slide')
+        a(class='left carousel-control' href='#sponsors' role='button' data-slide='prev')
+         span(class='glyphicon glyphicon-chevron-left' style="border-radius: 6px;")
+        a(class='right carousel-control' href='#sponsors' role='button' data-slide='next')
+         span(class='glyphicon glyphicon-chevron-right' style="border-radius: 6px;")
+     div(class='col-sm-6' style="margin-top:20px;")
+      block content
+     div(class='col-sm-3')
+      div.row.well(style='text-align:center;margin-top:20px;margin-right:30px;margin-left:10px;padding:5px;')
+        a(href="/newses" class="side-a") News
+        a(href='http://smuc.edu.et/index.php/research-publication/annual-national-conference-on-pheis' class='side-a' target="_blank") Previous Conference
+      div.row.well(style='text-align:center;margin-top:10px;margin-right:30px;margin-left:10px;padding:5px;')
+        h4 Key Speakers
+        div(class="row")
+          img(class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="60" height="60")
+          h5 Name
+          //p Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.
+        div(class="row")
+          img(class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="60" height="60")
+          h5 Name
+          //p Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.
+        div(class="row")
+          img(class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="60" height="60")
+          h5 Name
+          //p Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+   footer(style="padding: 50px 0 65px;border-top:1px #E2E2E2 solid;")
+     .container
+       .row
+         .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
+           ul.list-inline.text-center
+            li
+             a(href='https://www.facebook.com/smu.edu.et' target="_blank")
+               span.fa-stack.fa-lg
+                 i.fa.fa-circle.fa-stack-2x
+                 i.fa.fa-facebook.fa-stack-1x.fa-inverse
+            li
+             a(href='https://twitter.com/intent/follow?original_referer=http%3A%2F%2Fwww.smuc.edu.et%2F&screen_name=SMUCEthiopia&tw_p=followbutton&variant=2.0' target="_blank")
+               span.fa-stack.fa-lg
+                 i.fa.fa-circle.fa-stack-2x
+                 i.fa.fa-twitter.fa-stack-1x.fa-inverse
+           ul.list-inline.text-center
+            li
+             a(href="http://smuc.edu.et/index.php/research-publication/annual-national-conference-on-pheis") FAQ's
+           ul.list-inline.text-center
+            h5 Contact Us:
+              span  St. Mary’s University, Addis Ababa, Ethiopia,
+              a(href="#")
+               span(style='color:blue;')  Conference@smuc.edu.et
+        p.copyright.text-muted(align='center') Copyright © SMU Conference 2016
+
+   //script(type='text/javascript' src='javascripts/jquery.min.js')
+   //script(type='text/javascript' src='javascripts/bootstrap.min.js')
+   //script(type='text/javascript' src='javascripts/validator.min.js')
+   script(type='text/javascript' async src='javascripts/index.min.js')

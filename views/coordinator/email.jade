@@ -1,0 +1,28 @@
+extends ../layout
+
+block content
+ div(class='row')
+  div(class='col-lg-1')
+  div(class='col-lg-7')
+   form(id='editor' action='email' method='post' data-toggle='validator' role='form' enctype="multipart/form-data")
+    div(class='form-group has-feedback')
+     input(type='email' placeholder='email to' name='address' class='form-control' required)
+     span(class="glyphicon form-control-feedback" aria-hidden="true")
+     div(class="help-block with-errors")
+    div(class='form-group has-feedback')
+     input(type='text' placeholder='subject' name='subject' class='form-control' required)
+     span(class="glyphicon form-control-feedback" aria-hidden="true")
+     div(class="help-block with-errors")
+    div(class="form-group has-feedback")
+     span(class="btn btn-default btn-sm fileinput-button")
+      i(class="glyphicon glyphicon-paperclip")
+      input(id="files" type="file" name="file" class="fileinput-button")
+     span(class="glyphicon form-control-feedback" aria-hidden="true")
+     div(class="help-block with-errors")
+    div(class='form-group has-feedback')
+     textarea(style='height:200px;width:400px;' placeholder='content' name='text' class='form-control' required)
+     span(class="glyphicon form-control-feedback" aria-hidden="true")
+     div(class="help-block with-errors")
+    div(class='form-group')
+     button(type='submit' class='btn btn-primary' data-original-title='send') Send
+      span(class='glyphicon glyphicon-send')

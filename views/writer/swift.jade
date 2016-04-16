@@ -1,0 +1,16 @@
+extends ../layout
+
+block content
+  h1(align='center') Swift Code Verification
+  p(align='center')
+   - if(!verified || verified === false)
+      label(for='swift')
+      input(type='text' name='swift' id='swift' class='btn' placeholder='swift code here' require)
+      button(class='btn btn-primary' id='swiftcode') Enter
+  - if(swiftcode)
+      - if(verified === true)
+          p(align='center' style='color: #37a000;font-weight: bold;')
+            span(id='return')= swiftcode + ' (verified)'
+      - else
+          p(align='center' style='color: red;font-weight: bold;')
+            span(id='return')= swiftcode + ' (unverified)'

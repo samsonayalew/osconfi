@@ -1,0 +1,14 @@
+extends layout
+
+block content
+ div(class="row" style="margin-top:20px;")
+  div(class="col-ms-2")
+  div(class="col-sm-9" role="main")
+   div(class="panel panel-primary")
+    div(class="panel-heading")
+     h3(class="panel-title")
+      - each email in emails
+         span=email.subject + '(' + email.to + ')'
+    div(class="panel-body")
+     - each email in emails
+        span=email.text

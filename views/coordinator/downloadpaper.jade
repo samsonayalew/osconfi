@@ -1,0 +1,30 @@
+extends ../layout
+
+block content
+ div(class='row')
+  div(class='col-lg-2')
+    - if(track)
+        h3= track.name
+  div(class='col-lg-10')
+   - if(writer)
+     - each writer, index in writers
+      - if(writer.file)
+       - each file, index in writer.file
+        - if(track.name === file.track)
+           div(class="input-group" style='margin-top:20px;')
+            a(href='/papers/#{file.originalname}')= file.originalname
+            span ( #{writer._id} )
+            p ( #{file.submissiontype} )
+            span(style='font-size: medium;') Abstract:
+            p(style='font-size: medium;font-style: oblique;font-weight: bold;')= file.abstract
+        //form(id="userChange" action="changeHandler")
+          div(class="col-lg-9")
+           div(class="input-group" style='margin-top:20px;')
+            input(type="text" class="form-control" value= file.originalname aria-label="..." disabled)
+            div(class="input-group-btn")
+             select(class="form-control dropdown-menu dropdown-menu-right assignpaper" id="#{writer._id}" style="margin:0;")
+              option(value='' disabled selected) select reviewer
+              - each reviewer in reviewers
+                 option= reviewer._id
+      - else
+    - else

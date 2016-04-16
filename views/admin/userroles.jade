@@ -1,0 +1,22 @@
+extends ../layout
+
+block content
+ div(class='row')
+  div(class='col-lg-2')
+  div(class='col-lg-10')
+   - each user, index in users
+      form(id="roleChange")
+       div(class="col-lg-8")
+        div(class="input-group" style='margin-top:20px;')
+         input(type="text" class="form-control" value= user._id aria-label="..." disabled)
+         div(class="input-group-btn")
+          select(class="form-control dropdown-menu dropdown-menu-right roleselector" id="#{user._id}" style="margin:0;")
+           option(value='' disabled selected)= user.role
+           - if(user.role !== 'admin')
+             option(value='admin') Admin
+           - if(user.role !== 'coordinator')
+             option(value='coordinator') Coordinator
+           - if(user.role !== 'reviewer')
+             option(value='reviewer') Reviewer
+           - if(user.role !== 'writer')
+             option(value='writer') Writer
