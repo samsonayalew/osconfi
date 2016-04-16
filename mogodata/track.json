@@ -1,0 +1,2 @@
+{"_id":{"$oid":"5678003f6ef76e78143a16b3"},"name":"AI","description":"Papers on Artificial Intelligence and related subjects.","coordinator":"sam@gmail.com"}
+{"_id":{"$oid":"5678006d6ef76e78143a16b4"},"name":"Big Data","description":"papers on big data usage, development and related works."}
