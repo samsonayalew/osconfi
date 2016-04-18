@@ -11,7 +11,7 @@ var upload = multer({ dest: 'uploads/' });
 var images = multer({dest: 'news_images/'});
 
 var MongoClient = require('mongodb').MongoClient;
-var connString = 'mongodb://localhost:27017/conference';
+var connString = process.env.OPENSHIFT_MONGODB_DB_URL + 'conference' || 'mongodb://localhost:27017/conference';
 var router = express.Router();
 
 var transporter = nodemailer.createTransport({
